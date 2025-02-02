@@ -42,6 +42,7 @@ checkpointed.`,
 		cli.StringFlag{Name: "manage-cgroups-mode", Value: "", Usage: "cgroups mode: soft|full|strict|ignore (default: soft)"},
 		cli.StringSliceFlag{Name: "empty-ns", Usage: "create a namespace, but don't restore its properties"},
 		cli.BoolFlag{Name: "auto-dedup", Usage: "enable auto deduplication of memory images"},
+		cli.BoolFlag{Name: "encrypt", Usage: "encrypt the resuling checkpoint"},
 	},
 	Action: func(context *cli.Context) error {
 		if err := checkArgs(context, 1, exactArgs); err != nil {
@@ -132,6 +133,7 @@ func criuOptions(context *cli.Context) (*libcontainer.CriuOpts, error) {
 		StatusFd:                context.Int("status-fd"),
 		LsmProfile:              context.String("lsm-profile"),
 		LsmMountContext:         context.String("lsm-mount-context"),
+		Encrypt:                 context.Bool("encrypt"),
 	}
 
 	// CRIU options below may or may not be set.
