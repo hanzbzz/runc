@@ -325,6 +325,7 @@ func (c *Container) Checkpoint(criuOpts *CriuOpts) error {
 		OrphanPtsMaster: proto.Bool(true),
 		AutoDedup:       proto.Bool(criuOpts.AutoDedup),
 		LazyPages:       proto.Bool(criuOpts.LazyPages),
+		Encrypt:         proto.Bool(criuOpts.Encrypt),
 	}
 
 	// if criuOpts.WorkDirectory is not set, criu default is used.
