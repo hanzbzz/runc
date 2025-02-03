@@ -6,13 +6,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"io"
 	"net"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"reflect"
-	"strconv"
 	"strings"
 	"time"
 
@@ -968,22 +966,6 @@ func (c *Container) criuSwrk(process *Process, req *criurpc.CriuReq, opts *CriuO
 			}
 		}
 	}
-	// Open file for writing
-	file, err := os.Create("/tmp/criu-command-debug.txt")
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-	// Write args to file
-	_, err = io.WriteString(file, strconv.FormatBool(*req.Opts.Encrypt))
-	if err != nil {
-		panic(err)
-	}
-	_, err = io.WriteString(file, strconv.FormatBool(*req.Opts.LeaveRunning))
-	if err != nil {
-		panic(err)
-	}
-
 	data, err := proto.Marshal(req)
 	if err != nil {
 		return err
