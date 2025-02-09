@@ -43,6 +43,7 @@ checkpointed.`,
 		cli.StringSliceFlag{Name: "empty-ns", Usage: "create a namespace, but don't restore its properties"},
 		cli.BoolFlag{Name: "auto-dedup", Usage: "enable auto deduplication of memory images"},
 		cli.BoolFlag{Name: "encrypt", Usage: "encrypt the resuling checkpoint"},
+		cli.StringFlag{Name: "encryption-cert", Usage: "location of the public cert to use for encryption"},
 	},
 	Action: func(context *cli.Context) error {
 		if err := checkArgs(context, 1, exactArgs); err != nil {

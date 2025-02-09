@@ -326,6 +326,7 @@ func (c *Container) Checkpoint(criuOpts *CriuOpts) error {
 		AutoDedup:       proto.Bool(criuOpts.AutoDedup),
 		LazyPages:       proto.Bool(criuOpts.LazyPages),
 		Encrypt:         proto.Bool(criuOpts.Encrypt),
+		TlsCert:         proto.String(criuOpts.EncryptionCert),
 	}
 
 	// if criuOpts.WorkDirectory is not set, criu default is used.
